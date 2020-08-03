@@ -1,0 +1,28 @@
+---
+title: "Trabalho final"
+author: "Vivian Gaione"
+date: "03/08/2020"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+Análise do consumo de energia elétrica em território nacional
+
+A base de dados apresentada neste trabalho se refere as tarifas médias por classe de consumo de energia elétrica em todo território brasileiro. Por meio do trabalho apresentado,busca-se responder questões como: 
+
+Qual é o consumo médio de eletricidade na região do Brasil?
+Qual é a distribuição do consumo por classes?
+Qual o comportamento do consumo médio por ano? Esse consumo varia de acordo com as estações? `
+
+Tais perguntas auxiliam no mapeamento do comportamento do consumo de energia nas cinco regiões do país, podendo esse comportamento responder a sensibilidade como mudança na insidência de luz natural ou até mesmo a quantidade de atividades econômicas. 
+
+```{r}
+library(readr)
+TarifaMediaFornecimento <- read_csv("TarifaMediaFornecimento.csv")
+View(TarifaMediaFornecimento)
+
+```
+
+
+
