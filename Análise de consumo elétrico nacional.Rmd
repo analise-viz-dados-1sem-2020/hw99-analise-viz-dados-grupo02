@@ -60,8 +60,7 @@ View(df2)
 
 
 ```{r}
-  
- library (dplyr) 
+library (dplyr) 
 
 df3 <- df2 %>%
   filter(nomRegiao == "Sul") %>%
@@ -71,14 +70,16 @@ filter (nomRegiao == "Sudeste")
   
 library (ggplot2)
 
-ggplot (data = df4)+
-geom_col(mapping = aes(x = "nomRegiao", y= "media",  color = "black"))
+ggplot (data = df3)+
+geom_col(mapping = aes(x = "nomRegiao", y= "media",  color = "red"))
 
-ggplot (data = df2)+
-geom_col(mapping = aes(x = "vlrConsumoMWh", y= "nomRegiao",  color = "black"))
+ggplot (data = df4)+
+geom_col(mapping = aes(x = "vlrConsumoMWh", y= "nomRegiao",  color = "red"))
    
   
 ```
 
 
 *Fazendo mais testes é possível observar a incosistência da base de dados, impossibilitando seu uso com os recursos dados. 
+*Buscou-se a tentativa de avaliar o comportamento das regiões que dentro da base de dados poderiam ser manipuladas. Neste caso a região Sul e Sudeste. 
+
