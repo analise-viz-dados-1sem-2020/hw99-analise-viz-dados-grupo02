@@ -3,8 +3,10 @@ title: "Trabalho final"
 author: "Vivian Gaione"
 date: "03/08/2020"
 output:
-  word_document: default
+  html_document:
+    df_print: paged
   pdf_document: default
+  word_document: default
 ---
 
 Análise do consumo de energia elétrica em território nacional
@@ -15,14 +17,68 @@ Qual é o consumo médio de eletricidade na região do Brasil?
 Qual é a distribuição do consumo por classes?
 Qual o comportamento do consumo médio por ano? Esse consumo varia de acordo com as estações? `
 
-Tais perguntas auxiliam no mapeamento do comportamento do consumo de energia nas cinco regiões do país, podendo esse comportamento responder a sensibilidade como mudança na insidência de luz natural ou até mesmo a quantidade de atividades econômicas. 
+
+
+
+``````{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
 
 ```{r}
 library(readr)
 TarifaMediaFornecimento <- read_csv("TarifaMediaFornecimento.csv")
 View(TarifaMediaFornecimento)
 
+
 ```
 
 
 
+```{r}
+
+library(dplyr)
+
+TarifaMediaFornecimento$vlrConsumoMWh <- as.numeric(TarifaMediaFornecimento$vlrConsumoMWh)
+
+df2 <- TarifaMediaFornecimento %>%
+  group_by(nomRegiao) %>%
+  summarise(media = mean(vlrConsumoMWh)) 
+
+df2 <- filter(df2, nomRegiao != "esgoto e saneamento)" & nomRegiao != "Serviços e Outras")
+View(df2)
+```
+```
+*Limitações: 
+
+* Em determinado momento o nome das regiões muda para a classe de consumo e o consumo médio passa a ter a classe de consumo, o que dificulta a manipulação da base de dados. Com isso os dados das regiões Centro-Oeste e Norte aparecem como vazios.
+
+* Os caracteres especiais não conseguem ser corrigidos, mesmo utilizando a função chartr
+* Mesmo tentando com o filter, "esgoto e saneamento" e "Serviços e Outras" não foram removidos da região
+
+
+
+```{r}
+  
+ library (dplyr) 
+
+df3 <- df2 %>%
+  filter(nomRegiao == "Sul") %>%
+
+df4 <- df2 %>%
+filter (nomRegiao == "Sudeste")
+  
+library (ggplot2)
+
+ggplot (data = df4)+
+geom_col(mapping = aes(x = "nomRegiao", y= "media",  color = "black"))
+
+ggplot (data = df2)+
+geom_col(mapping = aes(x = "vlrConsumoMWh", y= "nomRegiao",  color = "black"))
+   
+  
+```
+
+
+*Fazendo mais testes é possível observar a incosistência da base de dados, impossibilitando seu uso com os recursos dados. 
