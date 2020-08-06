@@ -4,7 +4,6 @@ author: "Vivian Gaione"
 date: "03/08/2020"
 output:
   html_document:
-    df_print: paged
   pdf_document: default
   word_document: default
 ---
@@ -81,5 +80,6 @@ geom_col(mapping = aes(x = "vlrConsumoMWh", y= "nomRegiao",  color = "red"))
 
 
 *Fazendo mais testes é possível observar a incosistência da base de dados, impossibilitando seu uso com os recursos dados. 
+
 *Buscou-se a tentativa de avaliar o comportamento das regiões que dentro da base de dados poderiam ser manipuladas. Neste caso a região Sul e Sudeste. 
 
